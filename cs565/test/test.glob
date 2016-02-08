@@ -1,0 +1,47 @@
+DIGEST f15be841fbf9727f99c2254bbe870e2d
+Ftest
+ind 10:12 <> day
+constr 26:31 <> monday
+constr 41:47 <> tuesday
+constr 57:65 <> wednesday
+constr 75:82 <> thursday
+constr 92:97 <> friday
+constr 107:114 <> saturday
+constr 124:129 <> sunday
+R35:37 test <> day ind
+R51:53 test <> day ind
+R69:71 test <> day ind
+R86:88 test <> day ind
+R101:103 test <> day ind
+R118:120 test <> day ind
+R133:135 test <> day ind
+def 150:161 <> next_weekday
+R166:168 test <> day ind
+R173:175 test <> day ind
+R188:188 test <> d var
+R201:206 test <> monday constr
+R214:220 test <> tuesday constr
+R228:234 test <> tuesday constr
+R241:249 test <> wednesday constr
+R257:265 test <> wednesday constr
+R270:277 test <> thursday constr
+R285:292 test <> thursday constr
+R298:303 test <> friday constr
+R311:316 test <> friday constr
+R324:329 test <> monday constr
+R337:344 test <> saturday constr
+R350:355 test <> monday constr
+R363:368 test <> sunday constr
+R376:381 test <> monday constr
+R408:419 test <> next_weekday def
+R421:426 test <> friday constr
+R473:484 test <> next_weekday def
+R487:498 test <> next_weekday def
+R500:507 test <> saturday constr
+def 544:560 <> test_next_weekday
+R565:565 Coq.Init.Logic <> :type_scope:x_'='_x not
+R602:605 Coq.Init.Logic <> :type_scope:x_'='_x not
+R566:577 test <> next_weekday def
+R580:591 test <> next_weekday def
+R593:600 test <> saturday constr
+R606:612 test <> tuesday constr

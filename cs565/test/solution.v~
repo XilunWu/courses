@@ -1,0 +1,145 @@
+(** lecture note 2/12/2014 **)
+
+(** **)
+
+Fixpoint beq_nat (n m : nat) : bool :=
+  match n with
+    | O => match m with
+             | O => true
+             | S m' => false
+           end
+    | S n' => match m with
+                | O => false
+                | S m' => beq_nat n' m'
+              end
+  end.
+
+Theorem zero_nbeq_plus_1 : forall n : nat,
+                             beq_nat 0 (n + 1) = false.
+Proof.
+  intros n.
+  destruct n.
+  reflexivity.
+  reflexivity.
+Qed.
+
+(**********************************************************************)
+
+Theorem identity_fn_applied_twice :
+  forall (f : bool -> bool),
+    (forall (x : bool), f x = x) ->
+    forall (b : bool), f (f b) = b.
+Proof.
+  intros.
+  rewrite -> H.
+  rewrite -> H.
+  reflexivity.
+Qed.
+
+(**********************************************************************)
+
+Definition andb (b1:bool) (b2:bool) : bool :=
+  match b1 with
+    | true => b2
+    | false => false
+  end.
+
+Definition orb (b1:bool) (b2:bool) : bool :=
+  match b1 with
+    | true => true
+    | false => b2
+  end.
+
+(*** without using auto ***)
+
+Theorem andb_eq_orb :
+  forall (b c : bool),
+    (andb b c = orb b c) ->
+    b = c.
+Proof.
+  intros.
+  destruct b.
+  (*Case "b=true"*)
+  destruct c.
+  (*SCase "c=true"*)
+  reflexivity.
+  (*SCase "c=false"*)
+  (*the hypothesis H is false*)
+  (*now we need to simply the hypothesis*)
+  Lemma andb_true_false : andb true false = false.
+  Proof.
+    simpl.
+    reflexivity.
+  Qed.
+  Lemma orb_true_false : orb true false = true.
+  Proof.
+    simpl.
+    reflexivity.
+  Qed.
+  rewrite -> andb_true_false in H.
+  rewrite -> orb_true_false in H.
+  symmetry.
+  apply H.
+  (*Case "b = false"*)
+  destruct c.
+  (*SCase "c = true"*)
+  (*the hypothesis H is false*)
+  (*now we need to simply the hypothesis*)
+  Lemma andb_false_true : andb false true = false.
+  Proof.
+    simpl.
+    reflexivity.
+  Qed.
+  Lemma orb_false_true : orb false true = true.
+  Proof.
+    simpl.
+    reflexivity.
+  Qed.
+  rewrite -> andb_false_true in H.
+  rewrite -> orb_false_true in H.
+  apply H.
+  reflexivity.
+Qed.
+
+
+(*Another proof*)
+Lemma orb_on_same :
+  forall (b:bool),
+    orb b b = b.
+Proof.
+  intros b.
+  destruct b.
+  reflexivity.
+  reflexivity.
+Qed.
+
+Lemma orb_always_true :
+  forall b,
+    orb true b = true.
+Proof. reflexivity. Qed.
+
+Lemma andb_always_false :
+  forall b,
+    andb false b = false.
+Proof. reflexivity. Qed.
+
+Theorem andb_eq_orb2 :
+  forall (b c : bool),
+    (andb b c = orb b c) ->
+    b = c.
+Proof.
+  intros.
+  rewrite <- orb_on_same.
+  destruct b.
+  rewrite <- orb_always_true with c.
+  rewrite <- H.
+  destruct c.
+  reflexivity.
+  reflexivity.
+  rewrite <- andb_always_false with c.
+  rewrite -> H.
+  destruct c.
+  reflexivity.
+  reflexivity.
+Qed.
+
