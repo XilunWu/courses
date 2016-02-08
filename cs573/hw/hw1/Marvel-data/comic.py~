@@ -1,0 +1,3 @@
+f = open("marvel.txt")
+print "hello, world"
+f.close()
