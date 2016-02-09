@@ -310,6 +310,6 @@ Proof.
   rewrite -> plus_assoc.
   replace (n + m) with (m + n).
   reflexivity.
-  Case "Proof of replace". rewrite -> plus_comm. reflexivity.
+  Case "Proof of replace". rewrite plus_comm. reflexivity.
 Qed.
 
