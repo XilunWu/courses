@@ -1,0 +1,140 @@
+%
+% 6.857 homework template
+%
+% NOTE:
+% Be sure to define your team members with the \team command
+% Be sure to define the problem set with the \ps command
+% Be sure to use the \answer command for each of your answers 
+% 
+%
+
+
+\documentclass{article}
+
+\usepackage{amsmath}
+
+\newcommand{\student}{ Xilun Wu }
+\newcommand{\PurdueID}{ Wu636 }
+\newcommand{\homeworknumber}{ 2 }
+
+%\pagestyle{headings}
+\usepackage[dvips]{graphics,color}
+\usepackage{latexsym}
+\setlength{\parskip}{1pc}
+\setlength{\parindent}{0pt}
+\setlength{\topmargin}{-3pc}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pc}
+\setlength{\evensidemargin}{0pc}
+\setlength{\textwidth}{6.5in}
+\newcommand{\problemno}{0}
+
+\newcommand{\newpart}[1]{
+\newline
+\noindent
+(#1)
+}
+
+\newcommand{\question}[2]{
+\renewcommand{\problemno}{#1}
+\newpage
+\noindent
+\framebox{ \vbox{CS57300 Homework \hfill --- Homework \homeworknumber, Problem #1 --- \hfill  (\today)
+  \\ \student (\PurdueID) }}
+\bigskip
+\newline
+\noindent
+{\bf Q\problemno :} #2
+}
+
+\newcommand{\answer}{
+\noindent
+\newline
+{\bf A:}
+\newline
+}
+
+\begin{document}
+
+\question{1}{}
+\answer 
+(i)\quad I agree with Ronald, because we don't have much information about how they sampled the data. The sample method would affect a lot. For example, if the variance of donation amount is large, the randomness of sampling would lead to much difference. Therefore, this doesn't prove anything if the sample space is not large enough or the sampling is not so random. 
+\\\\
+(ii)\quad Using the data to run one-sided t-test with bin size 200 gives the p-value 0.00012 from which we can reject the null hypothesis that DEM > GOP on average donations. Based on the t-test result, DEM's claim is very likely to be right. 
+\\\\
+(iii)\quad 
+\\\\
+(iv)\quad The sampel size of each state varies a lot which makes them unequal from the perspective of statistics. However, in my solution, we treat each state equally, regradless of weight. This could lead to weakness of the conclusion. 
+\\
+(v)\quad 
+
+\question{2}{}
+\answer
+(i) 
+\\
+(ii) 
+\\
+
+
+
+\question{3}{Probability and conditional probability.\par
+(a)  The Internet is a wonderful source of information about symptoms of rare diseases. Are you sneezing? It could be the West Nile virus! The West Nile virus (WNV) infected approximately 2,000 people in the United States last year1. Sheldon, your hypochondriac friend, is sneezing and heard about the West Nile virus on Twitter. He demands a test for the West Nile virus, why not? The test correctly identifies the presence of WNV in 95\% of cases and only gives false positives in 1/10,000 cases. Unfortunately, the test indicates came back positive for West Nile virus and Sheldon is very concerned. Assume that in the population of the United States there are 300 million people susceptible to WNV. 
+\par
+\quad (i) What is the probability that Sheldon has WNV? \par
+\quad (ii) The WNV virus is fatal in 5\% of the cases. What is the probability that Sheldon will die this year? Assume a fatality rate of any cause (car accident, etc.) of 0.1\%. \\\\
+(b) Alice and Bob are playing a simple dice game. Each rolls one dice and the one with higher number wins. If the numbers are the same, they roll again. If Alice just won, what is the probability that she rolled a '4'?
+\\
+}
+\answer
+(a) \par
+\quad (i)
+\begin{align*}
+P(true | positive) &= 0.05956 \\
+\end{align*}
+\quad (ii)
+\begin{align*}
+P(die) &= P(die\ because\ of\ WNV) + P(die\ because\ of\ other\ causes) \\
+&= 0.05956 * 0.05 + 0.001 \\
+&= 0.003978
+\end{align*}
+
+(b)
+\begin{align*}
+P('4' | won) &= \frac{P(won | '4') * P('4')}{P(won)}\\
+&= \frac{1/2 * 1/6}{15/36}\\
+&= 1/5
+\end{align*}
+
+\question{4}{
+(a) Plot the empirical complementary cumulative distribution (ECCDF) of comic characters appearances in comic books. The ECCDF P[X $>$ x] is defined as the fraction of characters with more than x comic book appearances. For instance, if “superman” appears in 1000 comic books and there are only 10 characters with more than 1000 comic book appearances out of 2000 characters, then P [X $>$ 1000] = 10/2000. 
+\par IMPORTANT: Your plot should be in log-log scale. \par
+(b) Let A be the adjacency matrix connecting characters to comic books, where A$_{i,j}$ has character i appearing on comic book \textit{j}. Let A$^T$ be the transpose of matrix A. \par
+\quad (i) What does W = AA$^T$ represent? Give the name of the entity with the largest degree in the graph that has adjacency matrix W? \par
+\quad (ii) What does U = A$^T$A represent? Give the name of the entity with the largest degree in the graph that has adjacency matrix U? \par
+\quad (iii) Choose the correct option: If U = A$^T$A, then (1) U$^T$ = AA, (2) U$^T$ = A$^T$A, (3) U$^T$ = AA$^T$, or (4) U$^T$ =A$^T$A$^T$. \par
+\quad (iv) Let P = D$^{-1}$W, where W = AA$^T$ and D is a diagonal matrix where $D_{i,i} = \sum\nolimits_jW_{i,j}$. Find the eigenvector $x$ such that $x = Px$ and $\Vert x\Vert ^2 = 1$, where $\Vert x\Vert ^2 = \langle x, x\rangle $ is the inner product of $x$ with itself.
+
+\par
+}
+\answer
+(a) \par
+\quad \quad see appendix. \par
+(b) \par
+\quad (i) W represents how many times character i and character j appear in the same book. \par
+\quad \quad \quad Captain American has the largest degree. \par
+\quad (ii) U represents how many characters book i and book j share. \par
+\quad \quad \quad COC 1 has the largest degree. \par
+\quad (iii) (2) is correct because matrix U is symmetric. \par
+\quad (iv) 
+\begin{align}
+x &= Px\\
+Dx &= Wx\\
+(Dx)_i &= \sum_{j=1}^n(W_{ij}x_j)\\
+D_{i,i}x_i &=  \sum_{j=1}^n(W_{ij}x_j)\\
+(\sum\nolimits_jW_{ij})x_i &= \sum_{j=1}^n(W_{ij}x_j)\\
+x_i &= x_j\ for\ all\ i\ and\ j\\
+x_i &= \frac{1}{\sqrt{n}}, \ i = 1,2,...,n
+\end{align}
+
+\end{document}
+
