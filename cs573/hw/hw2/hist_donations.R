@@ -138,7 +138,3 @@ if(FALSE){
 }
 # Q1.iv
 # print(count1); print(count2)
-
-
-
-

@@ -1,0 +1,1 @@
+1b = read.csv("population1b.csv", header=TRUE, 
