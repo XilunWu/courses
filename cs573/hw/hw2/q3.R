@@ -242,7 +242,7 @@ legend('topright', c("arm 1","arm 2","arm 3","arm 4"), bty='n', lty=1, lwd=1.5, 
 }
 
 #Q3.v
-if(FALSE){
+#if(FALSE){
 ts_test <- function(k, ntest, dataSet, alpha, beta){
     #K := 4 in this question
     k = 4
@@ -363,5 +363,7 @@ lines(x, y[2,], type="l", col="red", lwd=1.5)
 lines(x, y[3,], type="l", col="orange", lwd=1.5)
 lines(x, y[4,], type="l", col="purple", lwd=1.5)
 
+write.csv(t(y), "test.csv")
+
 legend('topright', c("arm 1","arm 2","arm 3","arm 4"), bty='n', lty=1, lwd=1.5, col=c("blue","red", "orange", "purple"))
-}
+#}

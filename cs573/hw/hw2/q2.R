@@ -53,7 +53,7 @@ print(v2b_mean)
 }
 
 # 3
-if(FALSE) {
+if(FALSE){
 v1b = read.csv("other_donation_data/population1p.csv", header=TRUE)
 v2b = read.csv("other_donation_data/population2p.csv", header=TRUE)
 
@@ -68,9 +68,9 @@ v2b_split = as.list(split(v2b_m, sample(1:N, nrow(v2b_m), replace=T)))
 v1b_bin_averages = unlist(lapply(v1b_split,mean))
 v2b_bin_averages = unlist(lapply(v2b_split,mean))
 
-# t.test(v1b_bin_averages, v2b_bin_averages, alternative="less")
-# p<-t.test(dem_bin_averages, v2b_bin_averages, alternative="less")$p.value
-# print(p)
+ t.test(v1b_bin_averages, v2b_bin_averages)
+ p<-t.test(v1b_bin_averages, v2b_bin_averages)$p.value
+ print(p)
 
 v1b_mean = mean(v1b_m)
 v2b_mean = mean(v2b_m)
@@ -96,9 +96,9 @@ v2b_split = as.list(split(v2b_m, sample(1:N, nrow(v2b_m), replace=T)))
 v1b_bin_averages = unlist(lapply(v1b_split,mean))
 v2b_bin_averages = unlist(lapply(v2b_split,mean))
 
-# t.test(v1b_bin_averages, v2b_bin_averages, alternative="less")
-# p<-t.test(dem_bin_averages, v2b_bin_averages, alternative="less")$p.value
-# print(p)
+ t.test(v1b_bin_averages, v2b_bin_averages)
+ p<-t.test(v1b_bin_averages, v2b_bin_averages)$p.value
+ print(p)
 
 v1b_mean = mean(v1b_m)
 v2b_mean = mean(v2b_m)

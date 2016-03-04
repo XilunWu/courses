@@ -18,7 +18,8 @@
 \newcommand{\homeworknumber}{ 2 }
 
 %\pagestyle{headings}
-\usepackage[dvips]{graphics,color}
+%\usepackage[dvips]{graphics,color}
+\usepackage{graphicx}
 \usepackage{latexsym}
 \setlength{\parskip}{1pc}
 \setlength{\parindent}{0pt}
@@ -58,86 +59,126 @@
 
 \question{1}{}
 \answer 
-(i)\quad I agree with Ronald, because we don't have much information about how they sampled the data. The sample method would affect a lot. For example, if the variance of donation amount is large, the randomness of sampling would lead to much difference. Therefore, this doesn't prove anything if the sample space is not large enough or the sampling is not so random. 
+(i)\quad I agree with Ronald, because we don't have much information about how they sampled the data. The sample method would affect a lot. For example, if the variance of donation amount is large, the randomness of sampling would lead to much difference. Therefore, this doesn't prove anything if the sample space is not large enough or the sampling is not so random. \par
+\quad \quad Besides, this is only one-year data, which may not represent the whole situation.
 \\\\
-(ii)\quad Using the data to run one-sided t-test with bin size 200 gives the p-value 0.00012 from which we can reject the null hypothesis that DEM > GOP on average donations. Based on the t-test result, DEM's claim is very likely to be right. 
+(ii)\quad Firstly, I do resample and generate the average of each bin. The distribution is approximate normally, so I choose the run t-test on this data with resampling. \par
+\quad \quad Using the data to run one-sided t-test with bin size 200 gives the p-value 0.00012 from which we can reject the null hypothesis that DEM $>$ GOP on average donations. Based on the t-test result, DEM's claim is very likely to be right for year 2012 but unsure for the whole record. 
 \\\\
-(iii)\quad 
-\\\\
-(iv)\quad The sampel size of each state varies a lot which makes them unequal from the perspective of statistics. However, in my solution, we treat each state equally, regradless of weight. This could lead to weakness of the conclusion. 
-\\
-(v)\quad 
-\\\\
-(vi)\quad
+(iii)\quad With the null hypothesis DEM $>$ GOP on average donations, I run t-test on this data by state, and here's the result: {AL, IA, IN, MA, ME, MT, NC, NM, OH, OR, TX} support DEM's claim that DEM $>$ GOP on average donations in state. Other states don't support this claim.
 
+(iv)\quad The sampel size of each state varies a lot which makes them unequal from the perspective of statistics. However, in my solution, we treat each state equally, regradless of weight. This could lead to weakness of the conclusion. \par
+\quad \quad In addition, some states get very small sample size, which is inappropriate to be used in t-test. 
+
+(v)\quad {CO, FL, GA, IL, MD, MN, NJ, SC, WA, WV} supports GOP's claim. 
+\par
+(vi) \par
+\quad \quad (Q1.i) The same conclusion as Q1.i. \par
+\quad \quad (Q1.ii)  Using the data to run one-sided t-test gives the p-value 0.031 from which we can reject the null hypothesis that DEM $>$ GOP on average donations. Based on the t-test result, DEM's claim is very likely to be right. 
+\par
+\quad \quad (Q1.iii)  {ID, IL, KS, OH, TX} supports DEM's claim. \par
 
 \question{2}{}
 \answer
+(i) By CLT, we can do t-test with resampling on data. The result of t-test is:\par
+H0: Mean of population1b $>$ Mean of population2b\par
+H1: Mean of population1b $<$ Mean of population2b \par
+
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Mean of population1b & Mean of population2b & p-value \\ 
+ 0.4008919 & 0.4555991 & 6.507e-12 \\ 
+ \hline
+\end{tabular}
+\end{center}
+\quad Conclusion: Mean of population1b $<$ Mean of population2b
+\par
+(ii) By CLT, we can do t-test with resampling on data. The result of t-test is:\par
+H0: Mean of population3b $>$ Mean of population4b\par
+H1: Mean of population3b $<$ Mean of population4b \par
+
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Mean of population3b & Mean of population4b & p-value \\ 
+ 0.3596377 & 0.4480959 & 3.618e-05 \\ 
+ \hline
+\end{tabular}
+\end{center}
+\quad Conclusion: Mean of population3b $<$ Mean of population4b
+\par
+(iii) By CLT, we can do t-test directly on data. The result of t-test is:\par
+H0: Mean of population1p $=$ Mean of population2p\par
+H1: Mean of population1p $\neq$ Mean of population2p \par
+
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Mean of population1p & Mean of population2p & p-value \\ 
+ 2.666863 & 2.242707 & 0.00657 \\ 
+ \hline
+\end{tabular}
+\end{center}
+\quad Conclusion: Mean of population1p $\neq$ Mean of population2p
+\par
+(iv) By CLT, we can do t-test directly on data. The result of t-test is:\par
+H0: Mean of population3p $=$ Mean of population4p\par
+H1: Mean of population3p $\neq$ Mean of population4p \par
+
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Mean of population3p & Mean of population4p & p-value \\ 
+ 2.042834 & 2.542555 & 0.1618 \\ 
+ \hline
+\end{tabular}
+\end{center}
+\quad Conclusion: Mean of population3p $=$ Mean of population4p
+\par
+
+
+\question{3}{}
+\answer
 (i) 
-\\
+\par
+\quad (a) The total rewards are 440. \par
+\quad (b) The plot of ucb test is as below: \par
+\includegraphics[width=1.0\textwidth]{Q3_1.pdf} 
+\\\\
 (ii) 
-\\
-
-
-
-\question{3}{Probability and conditional probability.\par
-(a)  The Internet is a wonderful source of information about symptoms of rare diseases. Are you sneezing? It could be the West Nile virus! The West Nile virus (WNV) infected approximately 2,000 people in the United States last year1. Sheldon, your hypochondriac friend, is sneezing and heard about the West Nile virus on Twitter. He demands a test for the West Nile virus, why not? The test correctly identifies the presence of WNV in 95\% of cases and only gives false positives in 1/10,000 cases. Unfortunately, the test indicates came back positive for West Nile virus and Sheldon is very concerned. Assume that in the population of the United States there are 300 million people susceptible to WNV. 
 \par
-\quad (i) What is the probability that Sheldon has WNV? \par
-\quad (ii) The WNV virus is fatal in 5\% of the cases. What is the probability that Sheldon will die this year? Assume a fatality rate of any cause (car accident, etc.) of 0.1\%. \\\\
-(b) Alice and Bob are playing a simple dice game. Each rolls one dice and the one with higher number wins. If the numbers are the same, they roll again. If Alice just won, what is the probability that she rolled a '4'?
-\\
-}
-\answer
-(a) \par
-\quad (i)
-\begin{align*}
-P(true | positive) &= 0.05956 \\
-\end{align*}
-\quad (ii)
-\begin{align*}
-P(die) &= P(die\ because\ of\ WNV) + P(die\ because\ of\ other\ causes) \\
-&= 0.05956 * 0.05 + 0.001 \\
-&= 0.003978
-\end{align*}
-
-(b)
-\begin{align*}
-P('4' | won) &= \frac{P(won | '4') * P('4')}{P(won)}\\
-&= \frac{1/2 * 1/6}{15/36}\\
-&= 1/5
-\end{align*}
-
-\question{4}{
-(a) Plot the empirical complementary cumulative distribution (ECCDF) of comic characters appearances in comic books. The ECCDF P[X $>$ x] is defined as the fraction of characters with more than x comic book appearances. For instance, if “superman” appears in 1000 comic books and there are only 10 characters with more than 1000 comic book appearances out of 2000 characters, then P [X $>$ 1000] = 10/2000. 
-\par IMPORTANT: Your plot should be in log-log scale. \par
-(b) Let A be the adjacency matrix connecting characters to comic books, where A$_{i,j}$ has character i appearing on comic book \textit{j}. Let A$^T$ be the transpose of matrix A. \par
-\quad (i) What does W = AA$^T$ represent? Give the name of the entity with the largest degree in the graph that has adjacency matrix W? \par
-\quad (ii) What does U = A$^T$A represent? Give the name of the entity with the largest degree in the graph that has adjacency matrix U? \par
-\quad (iii) Choose the correct option: If U = A$^T$A, then (1) U$^T$ = AA, (2) U$^T$ = A$^T$A, (3) U$^T$ = AA$^T$, or (4) U$^T$ =A$^T$A$^T$. \par
-\quad (iv) Let P = D$^{-1}$W, where W = AA$^T$ and D is a diagonal matrix where $D_{i,i} = \sum\nolimits_jW_{i,j}$. Find the eigenvector $x$ such that $x = Px$ and $\Vert x\Vert ^2 = 1$, where $\Vert x\Vert ^2 = \langle x, x\rangle $ is the inner product of $x$ with itself.
-
+\quad (a) The total rewards are 2629.8. \par
+\quad (b) The plot of ucb test is as below: \par
+\includegraphics[width=1.0\textwidth]{Q3_2.pdf} 
+\\\\
+(iii) 
 \par
-}
-\answer
-(a) \par
-\quad \quad see appendix. \par
-(b) \par
-\quad (i) W represents how many times character i and character j appear in the same book. \par
-\quad \quad \quad Captain American has the largest degree. \par
-\quad (ii) U represents how many characters book i and book j share. \par
-\quad \quad \quad COC 1 has the largest degree. \par
-\quad (iii) (2) is correct because matrix U is symmetric. \par
-\quad (iv) 
-\begin{align}
-x &= Px\\
-Dx &= Wx\\
-(Dx)_i &= \sum_{j=1}^n(W_{ij}x_j)\\
-D_{i,i}x_i &=  \sum_{j=1}^n(W_{ij}x_j)\\
-(\sum\nolimits_jW_{ij})x_i &= \sum_{j=1}^n(W_{ij}x_j)\\
-x_i &= x_j\ for\ all\ i\ and\ j\\
-x_i &= \frac{1}{\sqrt{n}}, \ i = 1,2,...,n
-\end{align}
+\quad (Redo Q3.i) The total rewards are 420. The plot of epsilon greedy is as below: \par
+\includegraphics[width=1.0\textwidth]{Q3_3_1.pdf} 
+\par
+\quad (Redo Q3.ii) The total rewards are 2790.59. The plot of epsilon greedy is as below: \par
+\includegraphics[width=1.0\textwidth]{Q3_3_2.pdf} 
+\par
+UCB is better for Bernoulli data(populationib.csv) but has poorer performance for real-world data(populationip.csv). 
+\par
+(iv)
+\quad In Q2, we know that population1b $<$ population2b; population3b $<$ population4b; population1p $>$ population2p; population3p and population4p are close(maybe equal). For bernoulli data(populationib), the result of ucb test show the same average relationship as t-test: arm2 has higher expectation than arm1, arm4 has higher expectation than arm3. But for i.i.d unknown random data(populationip), the result of ucb test show that these 4 arms have similar average -- they have very close pulls. I think this is becasue UCB works well for Bernoulli data but has poor performance on real-world problems(data). 
+\\\\
+(v)
+\par
+\quad (a) The total rewards are 450. The plot of Thompson Sampling is as below: \par
+\includegraphics[width=1.0\textwidth]{ts11.pdf} 
+\par
+\quad (b) The total rewards are 441. The plot of Thompson Sampling is as below: \par
+\includegraphics[width=1.0\textwidth]{ts100.pdf} 
+\par
+\quad (c) \par
+\quad Higher the $\alpha, \beta$, tighter is the concentration of Beta($\alpha, \beta$) around the mean.
+ As we know, posterior gets concentrated as more samples are obtained, thus higher the $\alpha, \beta$, the later Thompson Sampling could get concentrated(stop being "random"). \par
+\quad So, if we want our TS to concentrate later, we can choose large $\alpha, \beta$ like 100, 100, which means we would like our algorithm to get rid of suboptimal at the beginning of test. 
+\par
+\quad (d) Play-the-winner strategy. 
 
 \end{document}
 

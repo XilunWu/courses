@@ -66,6 +66,13 @@ Proof. intros n. induction n as [| n'].
        Case "n = S n'". simpl. rewrite -> IHn'. reflexivity.
 Qed.
 
+Theorem plus_0_r : forall n:nat, n + 0 = n.
+Proof.
+  intros n. induction n as [| n'].
+  Case "n = 0".     reflexivity.
+  Case "n = S n'".  simpl. rewrite -> IHn'. reflexivity.
+Qed.
+
 Theorem minus_diag : forall n,
                        minus n n = 0.
 Proof.
@@ -312,4 +319,48 @@ Proof.
   reflexivity.
   Case "Proof of replace". rewrite plus_comm. reflexivity.
 Qed.
+
+Theorem bin_to_nat_pres_incr : forall x:bin,
+    S (bin_to_nat x) = bin_to_nat (incr x).
+Proof.
+  intros. induction x as [|n'|n'].
+  Case "x = B0". reflexivity.
+  Case "x = B1 n'". reflexivity.
+  Case "x = B2 n'". simpl. 
+  rewrite plus_0_r. rewrite -> plus_0_r.
+  rewrite <- IHn'.  
+  rewrite <- plus_n_Sm. reflexivity.
+Qed.
+
+Fixpoint nat_to_bin (n:nat) : bin :=
+  match n with
+  | O => B0
+  | S n' => incr (nat_to_bin n')
+  end.
+Eval compute in (nat_to_bin 10).
+Eval compute in (nat_to_bin 11).
+
+Example nat_to_bin_correct : forall n:nat,
+    bin_to_nat (nat_to_bin n) = n.
+Proof.
+  intros. induction n as [| n'].
+  Case "n = 0". reflexivity.
+  Case "n = S n'". simpl.
+  rewrite <- bin_to_nat_pres_incr. rewrite IHn'. reflexivity.
+Qed.
+
+(*
+Binary has infinite formats for the same value.
+e.g. 1001 = 00001001 = 000...01001
+nat_to_bin only contains no preceding 0 (B0 rather than B1 (B1 (... B0)...).).
+ *)
+
+(* Theorem: Addition is commutative.
+   Proof: Commutative : for any a b, a + b = b + a
+     By induction on a.
+     First, suppose a = 0. We have 0 + b = b + 0 from the definition of +.
+     Next, suppose a = S a', where a' + b = b + a'.
+     We have (S a') + b = b + (S a') which comes from (S (a' + b)) = (S (b + a')) by induction hypothesis. 
+   Qed.
+*)
 

@@ -1,0 +1,108 @@
+# Q3.i & 2
+
+ucb_test <- function(k, ntest, dataSet){
+    #K := 4 in this question
+    k = 4
+    ni = 1:k
+    ri = 1:k
+    # initialize ni and rewards to 0
+    for (i in 1:4) {
+        ni[i] = 0
+    	ri[i] = 0
+    }
+
+    if (dataSet == 'b') {
+        v1b = read.csv("other_donation_data/population1b.csv", header=TRUE)
+    	v2b = read.csv("other_donation_data/population2b.csv", header=TRUE)
+	v3b = read.csv("other_donation_data/population3b.csv", header=TRUE)
+	v4b = read.csv("other_donation_data/population4b.csv", header=TRUE)
+	v1b_m = as.matrix(v1b)
+        v2b_m = as.matrix(v2b)
+        v3b_m = as.matrix(v3b)
+        v4b_m = as.matrix(v4b)
+    }
+
+    else if (dataSet == 'p') {
+        v1b = read.csv("other_donation_data/population1p.csv", header=TRUE)
+    	v2b = read.csv("other_donation_data/population2p.csv", header=TRUE)
+	v3b = read.csv("other_donation_data/population3p.csv", header=TRUE)
+	v4b = read.csv("other_donation_data/population4p.csv", header=TRUE)
+	#normalize all data
+	v1b_m = as.matrix(v1b)
+        v2b_m = as.matrix(v2b)
+        v3b_m = as.matrix(v3b)
+        v4b_m = as.matrix(v4b)
+	#find the largest number
+	max_value = max(c(max(v1b_m[1:ntest,2]),max(v2b_m[1:ntest,2]),max(v3b_m[1:ntest,2]),max(v4b_m[1:ntest,2])))
+        v1b_m[,2] = unlist(lapply(v1b_m[,2], function(x){return(x/max_value)}))
+        v2b_m[,2] = unlist(lapply(v2b_m[,2], function(x){return(x/max_value)}))
+        v3b_m[,2] = unlist(lapply(v3b_m[,2], function(x){return(x/max_value)}))
+	v4b_m[,2] = unlist(lapply(v4b_m[,2], function(x){return(x/max_value)}))
+    }
+    arm_reward_dist = list(v1b_m, v2b_m, v3b_m, v4b_m)
+    
+    selectNextArm <- function() {
+        scores <- 1:4
+	maxIndex = 0
+	maxScore = 0
+	for(m in 1:4){
+	    if (ni[m] == 0) {return(m)}
+	    scores[m] = (ri[m] / ni[m]) + sqrt(2.0 * log(i) / ni[m])
+	    if (maxIndex == 0) {maxIndex = 1; maxScore = scores[1]}
+	    else if (maxScore < scores[m]) {maxIndex = m; maxScore = scores[m]}
+        }
+	return(maxIndex)
+    }
+
+    updateStatus <- function(i_arm) {
+        ni[i_arm] <<- ni[i_arm] + 1
+	ri[i_arm] <<- ri[i_arm] + arm_reward_dist[[i_arm]][ni[i_arm], 2]
+    }
+
+    #output the result for (a) and plot for (b)
+    outputResult <- function() {
+        line = 0
+	rewards = c(0,0,0,0)
+	for(i in 1:4) {
+            # 	  print(ni[i])
+	    line = line + ni[i]
+	    #	  print(ri[i])
+	    if (dataSet == 'p') {rewards[i] = rewards[i] + ri[i] * max_value}
+	    else {rewards[i] = rewards[i] + ri[i]}
+        }
+	return(rewards)
+    }
+
+########################
+
+    arm = 0
+    for (i in 1:ntest) {
+        arm = selectNextArm()
+	updateStatus(arm)
+    }
+    return(outputResult())
+}
+
+########################
+#Q3.i & ii
+x=c()
+y=c()
+
+flag = 'p'
+
+for (i in 1:50) {
+    x <- append(x, 20 * i)
+    y <- rbind(y, ucb_test(4, 20*i, flag))
+}
+
+plot(x, y[,1], xlim=c(0, 1400), ylim=c(0, 200*5), type="l", main="ucb_test: pulls vs. rewards", xlab="number of pulls", ylab="Gained rewards", col="blue", lwd=1.5)
+lines(x, y[,2], type="l", col="red", lwd=1.5)
+lines(x, y[,3], type="l", col="orange", lwd=1.5)
+lines(x, y[,4], type="l", col="purple", lwd=1.5)
+
+legend('topright', c("arm 1","arm 2","arm 3","arm 4"), bty='n', lty=1, lwd=1.5, col=c("blue","red", "orange", "purple"))
+print(y[50,1] + y[50,2] + y[50,3] + y[50,4])
+
+#end Q3.i
+
+# Q3.ii

@@ -25,32 +25,23 @@ alternative hypothesis: true difference in means is less than 0
 	sample estimates:
 	mean of x mean of y
 	0.3596377 0.4480959
-
-3:
-> t.test(v1b_bin_averages, v2b_bin_averages, alternative="less")
-
-  Welch Two Sample t-test
-
+3.
 data:  v1b_bin_averages and v2b_bin_averages
-t = 2.819, df = 78.394, p-value = 0.997
-alternative hypothesis: true difference in means is less than 0
+t = 2.8066, df = 66.19, p-value = 0.00657
+alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
-      -Inf 0.6299694
-      sample estimates:
-      mean of x mean of y
-       2.647221  2.251129
+ 0.1224339 0.7258775
+ sample estimates:
+ mean of x mean of y
+  2.666863  2.242707
+
 
 4:
-> t.test(v1b_bin_averages, v2b_bin_averages, alternative="less")
-
-  Welch Two Sample t-test
-
 data:  v1b_bin_averages and v2b_bin_averages
-t = -1.7524, df = 27.076, p-value = 0.04551
-alternative hypothesis: true difference in means is less than 0
+t = -1.4429, df = 24.318, p-value = 0.1618
+alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
-        -Inf -0.01429459
-	sample estimates:
-	mean of x mean of y
-	 2.093554  2.601731
-
+ -1.2140046  0.2145615
+ sample estimates:
+ mean of x mean of y
+  2.042834  2.542555 

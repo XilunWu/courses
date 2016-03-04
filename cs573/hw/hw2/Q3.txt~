@@ -1,0 +1,15 @@
+(a)
+[1] "Lines number: " "1000"
+[1] "Total rewards: " "440"
+
+(b)
+[1] 2629.8
+
+(3)
+(a)
+[1] 427
+
+(b)
+[1] 2763.35
+
+I don't think e-greedy is better than ucb1 in either of these cases because e-greedy produces result more randomly and when expecation data has a large variance, the result produced by e-greedy can be very random. 
